@@ -1,0 +1,102 @@
+% Formula sheet for MEC E 371 Heat Transfer
+% Two column format
+
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{siunitx}
+\usepackage{enumitem}
+
+\geometry{letterpaper, portrait, margin=0.5in}
+\setlength{\columnsep}{0.5in}
+
+\title{MEC E 371 Formula Sheet}
+\author{Alex Diep}
+\date{Last Updated: \today}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MEC E 371 Formula Sheet}
+\rhead{Page \thepage}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{multicols*}{2}
+\section*{8. Internal Forced Convection}
+\subsection*{8.1. General Procedure}
+\begin{enumerate}
+    \item Find fluid properties from Appendix 1 at bulk mean temperature $T_b = (T_i + T_e)/2$
+    \begin{itemize}
+        \item $\rho$, $\mu$, $k$, $c_p$, $Pr$, $\nu$
+    \end{itemize}
+    \item Determine mean velocity $V_{\text{avg}}$
+    \item Determine the type of flow (laminar or turbulent)
+    \begin{itemize}
+        \item Laminar: $Re < 2300$
+        \item Turbulent: $Re > 4000$
+    \end{itemize}
+    \item Determine the Nusselt number $Nu$ using the appropriate correlation
+    \item Determine the heat transfer coefficient $h$ using $Nu$, $k$, and $A_s$
+\end{enumerate}
+
+\subsection*{8.2. Variable Definitions}
+\begin{itemize}
+    \item Nu: Nusselt number
+    \item Re: Reynolds number
+    \item Pr: Prandtl number
+    \item $\mu$: Dynamic viscosity
+    \item $\nu$: Kinematic viscosity
+    \item $k$: Thermal conductivity
+    \item $h$: Convection heat transfer coefficient
+    \item $D_h$: Hydraulic diameter
+    \item $A_s$: Surface area
+    \item $A_c$: Cross-sectional area
+    \item $V_{\text{avg}}$: Average velocity
+    \item $T_b$: Bulk mean temperature
+    \item $T_i$: Inlet temperature
+    \item $T_e$: Exit temperature
+    \item $\dot{m}$: Mass flow rate
+    \item $\dot{q}$: Heat flux 
+    \item $\Delta T_{\text{lm}}$: Log mean temperature difference   
+\end{itemize}
+
+\subsection*{8.3. Formulas}
+\vspace{-0.4cm}
+\begin{align*}
+    \dot{m} &= \rho V_{\text{avg}} A_c \\
+    \text{Re} &= \frac{\rho V_{\text{avg}} D}{\mu}  = \frac{V_{\text{avg}} D}{\nu} \\
+    D_h &= \frac{4 A_c}{\text{Perimeter}} = D\rvert_{\text{circular}} = a\rvert_{\text{square}}   \\
+    &= \frac{2ab}{a + b} \bigg\rvert_{\text{rectangular}} = \frac{4ab}{a+b}\bigg\rvert_{\text{channel}} \\
+    \text{Nu} &= \frac{hD_h}{k} \\ 
+    A_s &= \pi D L|_{\text{circular}} = 4ab|_{\text{rectangular}} \\
+    A_c &= \pi \frac{D^2}{4}|_{\text{circular}} = ab|_{\text{rectangular}} \\
+    l_{h, \text{laminar}} &= 0.05 \text{Re} D_h \\
+    l_{t, \text{laminar}} &= 0.05 \text{Re} \text{Pr} D_h = 0.05 \text{Pr} l_{h, \text{laminar}} \\
+    l_{h, \text{turbulent}} &\approx l_{t, \text{turbulent}} = 10D_h 
+\end{align*}
+\vspace{-0.5cm}
+Constant $\dot{q}$:
+\begin{align*}
+    T_e = T_i + \frac{\dot{q}}{\dot{m} C_p} 
+\end{align*}
+Constant $T_s$:
+\begin{align*}
+    T_e &= T_s - (T_s - T_i) \exp\left(-\frac{\dot{m} C_p}{h A_s}\right) \\
+    T_s &=\frac{T_e - T_i \exp\left(-\frac{\dot{m} C_p}{h A_s}\right)}{1 - \exp\left(-\frac{\dot{m} C_p}{h A_s}\right)}
+    \dot{Q} &= h A_s \Delta T_{\text{lm}} \\
+    T_{\text{lm}} &= \frac{T_{i} - T_{e}}{\ln[(T_{s} - T_{e})/(T_{s} - T_{i})]} \\
+\end{align*}    
+Pressure drop:\footnote{Check if $D_h$ should be used for $D$ in $V_{\text{avg}}$}
+\begin{align*}
+    \Delta P_{L} &= f \frac{L}{D_h} \frac{\rho V_{\text{avg}}^2}{2} \\
+    h_L &= \frac {\Delta P_L}{\rho g} = f \frac{L}{D_h} \frac{V_{\text{avg}}^2}{2g} \\
+    f|_{\text{laminar}} &= \frac{64}{\text{Re}} \\
+    V_{\text{avg}} &= \frac{\Delta P D^2}{32 \mu L} \\
+\end{align*} 
+
+\end{multicols*}
+\end{document}

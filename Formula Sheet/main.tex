@@ -33,17 +33,6 @@
 \chead{Last Updated: \today}
 \rhead{Alex Diep}
 \cfoot{\thepage\ of \pageref{LastPage}}
-%add line for footer 
-% \renewcommand{\footrulewidth}{0.4pt}% default is 0pt
-
-% set default font to sans-serif
-\renewcommand{\familydefault}{\sfdefault}
-
-% set head width = 18cm
-\setlength{\headwidth}{18cm}
-
-% set head height and top = 1.2cm
-\setlength{\headheight}{15pt}
 
 \begin{document}
 %\maketitle
@@ -59,12 +48,12 @@
     \item Determine mean velocity $V_{\text{avg}}$
     \item Determine the type of flow (laminar or turbulent)
     \begin{itemize}
-        \item Laminar: $Re < 2300$
-        \item Turbulent: $Re > 4000$
+        \item Laminar: Re $< 2300$
+        \item Turbulent: Re $> 4000$
     \end{itemize}
     \item Determine the Nusselt number, Nu, using the appropriate correlation
     \begin{itemize}
-        \item Check if $l_{h, \text{laminar}}$ or $l_{t, \text{laminar}}$ is less than $L$. If so, use Table \ref{tab:sec8_fully_developed_laminar} 
+        \item Check if $l_{h, \text{laminar}}$ and $l_{t, \text{laminar}}$ is less than $L$. If so, use Table \ref{tab:sec8_fully_developed_laminar} 
         \item Else, use empirical correlations
     \end{itemize}
     \item Determine the heat transfer coefficient $h$ using $Nu$, $k$, and $A_s$
@@ -96,14 +85,14 @@
 \vspace{-0.4cm}
 \begin{align*}
     \dot{m} &= \rho V_{\text{avg}} A_c \\
-    \text{Re} &= \frac{\rho V_{\text{avg}} D}{\mu}  = \frac{V_{\text{avg}} D}{\nu} \\
+    \text{Re} &= \frac{\rho V_{\text{avg}} D_h}{\mu}  = \frac{V_{\text{avg}} D_h}{\nu} \\
     D_h &= \frac{4 A_c}{\text{Perimeter}} = D\rvert_{\text{circular}} = a\rvert_{\text{square}}   \\
     &= \frac{2ab}{a + b} \bigg\rvert_{\text{rectangular}} = \frac{4ab}{a+b}\bigg\rvert_{\text{channel}} \\
     \text{Nu} &= \frac{hD_h}{k} \\ 
     A_s &= \pi D L|_{\text{circular}} = 4ab|_{\text{rectangular}} \\
     A_c &= \pi \frac{D^2}{4}|_{\text{circular}} = ab|_{\text{rectangular}} \\
     l_{h, \text{laminar}} &= 0.05 \text{Re} D_h \\
-    l_{t, \text{laminar}} &= 0.05 \text{Re} \text{Pr} D_h = 0.05 \text{Pr} l_{h, \text{laminar}} \\
+    l_{t, \text{laminar}} &= 0.05 \text{Re} \text{Pr} D_h = \text{Pr} l_{h, \text{laminar}} \\
     l_{h, \text{turbulent}} &\approx l_{t, \text{turbulent}} = 10D_h 
 \end{align*}
 \vspace{-0.5cm}
@@ -115,7 +104,7 @@ Constant $\dot{q}$:
 Constant $T_s$:
 \vspace{-0.5cm}
 \begin{align*}
-    T_e &= T_s - (T_s - T_i) \exp\left(-\frac{\dot{m} C_p}{h A_s}\right) \\
+    T_e &= T_s - (T_s - T_i) \exp\left(-\frac{h A_s}{\dot{m} c_p}\right) \\
     T_s &=\frac{T_e - T_i \exp\left(-\frac{\dot{m} C_p}{h A_s}\right)}{1 - \exp\left(-\frac{\dot{m} C_p}{h A_s}\right)} \\
     \dot{Q} &= h A_s \Delta T_{\text{lm}} \\
     T_{\text{lm}} &= \frac{T_{i} - T_{e}}{\ln[(T_{s} - T_{e})/(T_{s} - T_{i})]} 
@@ -161,11 +150,11 @@ For turbulent flow in a circular tube, use:
 \begin{table}[h]
     \centering
     \caption{Nusselt number and friction factor for fully developed laminar flow in tubes of various cross sections 
-    ($D_h = 4A_c /P$, $Re = V_{\text{avg}} D_h / \nu$, and $Nu = hD_h / k$) (\textbf{Table 8-1 in textbook})}
+    ($D_h = 4A_c /P$, $Re = V_{\text{avg}} D_h / \nu$, and $\text{Nu} = hD_h / k$) (\textbf{Table 8-1 in textbook})}
     \label{tab:sec8_fully_developed_laminar}
     \begin{tabular}{ccccc}
         \hline
-        & & \multicolumn{2}{c}{$Nu$} & \\
+        & & \multicolumn{2}{c}{Nu} & \\
         \cline{3-4}
         Tube Geometry & $a/b$ or $\theta^\circ$ & $T_s = \text{constant}$ & $\dot{q}_s = \text{constant}$ & $f$ \\
         \hline
